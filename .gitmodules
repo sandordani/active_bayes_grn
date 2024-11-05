@@ -1,0 +1,9 @@
+[submodule "DBALwithImgData"]
+	path = DBALwithImgData
+	url = https://github.com/lunayht/DBALwithImgData
+[submodule "Project-BayesDAG"]
+	path = Project-BayesDAG
+	url = https://github.com/microsoft/Project-BayesDAG
+[submodule "jax-dag-gflownet"]
+	path = jax-dag-gflownet
+	url = https://github.com/tristandeleu/jax-dag-gflownet
