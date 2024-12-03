@@ -1,6 +1,7 @@
 import numpy as np
 import pgmpy
 import networkx as nx
+import os
 
 # from ebunch or pgmpy dag
 def create_pdag(dag):
@@ -76,41 +77,47 @@ def create_pdag(dag):
   return pdag
 
 def edge_list_to_adjacency(edge_list, node_order):
-  return nx.adjacency_matrix(nx.DiGraph(edge_list), node_order).todense()
+  G = nx.DiGraph()
+  G.add_nodes_from(node_order)
+  G.add_edges_from(edge_list)
+  return nx.adjacency_matrix(G, node_order).todense()
 
 def adjacency_to_edge_list(adjacency):
-  G = nx.from_numpy_array(adjacency)
+  G = nx.from_numpy_array(adjacency, create_using=nx.DiGraph)
   return list(G.edges())
 
 def H(P):
-    logP = np.log(P)
-    return -np.sum(np.multiply(P, logP), axis=0)
+  logP = np.where(P != 0, np.log2(P), 0)
+  return -np.sum(np.multiply(P, logP), axis=0)
 
 def E_H(Ps):
-    return np.mean(H(Ps), axis=0)
+  return np.mean(H(Ps), axis=0)
 
 def sample_x_pool(X_pool, idx, n):
-    selected = np.random.choice(range(len(X_pool[idx])), n)
-    return X_pool[idx][selected]
+  selected = np.random.choice(range(len(X_pool[idx])), n)
+  return X_pool[idx][selected]
 
 # for knockout experiments from DREAM
 def perform_ko(ko_dict, gene):
-    return ko_dict[gene+1]
+  knockout_data = ko_dict[gene+1]
+  new_data = np.copy(ko_dict)
+  del new_data[gene+1]
+  return ko_dict[gene+1], new_data
 
 
 def directed_edge_f1_score(true_DAG, pred_DAG):
-    tp = np.sum([1 for (a,b) in true_DAG if (a,b) in pred_DAG])
-    fp = np.sum([1 for (a,b) in pred_DAG if (a,b) not in true_DAG])
-    fn = np.sum([1 for (a,b) in true_DAG if (a,b) not in pred_DAG])
+  tp = np.sum([1 for (a,b) in true_DAG if (a,b) in pred_DAG])
+  fp = np.sum([1 for (a,b) in pred_DAG if (a,b) not in true_DAG])
+  fn = np.sum([1 for (a,b) in true_DAG if (a,b) not in pred_DAG])
 
-    return tp / (tp + 0.5 * (fp + fn))
+  return tp / (tp + 0.5 * (fp + fn))
 
 def undirected_edge_f1_score(true_DAG, pred_DAG):
-    tp = np.sum([1 for (a,b) in true_DAG if (a,b) in pred_DAG or (b,a) in pred_DAG])
-    fp = np.sum([1 for (a,b) in pred_DAG if (a,b) not in true_DAG and (b,a) not in true_DAG])
-    fn = np.sum([1 for (a,b) in true_DAG if (a,b) not in pred_DAG and (b,a) not in pred_DAG])
+  tp = np.sum([1 for (a,b) in true_DAG if (a,b) in pred_DAG or (b,a) in pred_DAG])
+  fp = np.sum([1 for (a,b) in pred_DAG if (a,b) not in true_DAG and (b,a) not in true_DAG])
+  fn = np.sum([1 for (a,b) in true_DAG if (a,b) not in pred_DAG and (b,a) not in pred_DAG])
 
-    return tp / (tp + 0.5 * (fp + fn))
+  return tp / (tp + 0.5 * (fp + fn))
 
 def directed_shd(truth_edges, pred_edges):
   shd = 0
@@ -170,3 +177,9 @@ def conf_matrix(truth_edges, pred_edges, n_nodes):
   tn = n_nodes * n_nodes - tp - fp - fn
 
   return [[tp, fn], [fp, tn]]
+
+def save_dag_log(log, path, model_name, epoch):
+  for i, dag in enumerate(log):
+    if not os.path.exists(f'{path}/{model_name}/epoch_{epoch}'):
+      os.makedirs(f'{path}/{model_name}/epoch_{epoch}')
+    np.save(f'{path}/{model_name}/epoch_{epoch}/dag_{i}.npy', dag)

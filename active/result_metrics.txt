@@ -1,0 +1,48 @@
+Bayes DAG - uniform
+directed_shd: 302.5
+undirected_shd: 297.25
+directed_edge_f1_score: 0.03015095866126911
+pdag_f1_score: 0.06305083799172333
+pdag_shd: 302.5
+nnz: 131.25
+
+Bayes DAG ee
+directed_shd: 304.0
+undirected_shd: 294.75
+directed_edge_f1_score: 0.03823348815076676
+pdag_f1_score: 0.09478601829091635
+pdag_shd: 304.0
+nnz: 139.75
+conf_matrix: [[  15.5   170.5 ]
+ [ 124.25 3785.75]]
+
+Bayes DAG eces
+directed_shd: 302.75
+undirected_shd: 273.5
+directed_edge_f1_score: 0.01937816087492797
+pdag_f1_score: 0.1922356294592919
+pdag_shd: 302.75
+nnz: 152.5
+conf_matrix: [[  32.5  153.5]
+ [ 120.  3790. ]]
+
+Bayes DAG - bald
+directed_shd: 302.25
+undirected_shd: 299.0
+directed_edge_f1_score: 0.07429355189755442
+pdag_f1_score: 0.09361115891051375
+pdag_shd: 302.25
+nnz: 144.0
+conf_matrix: [[  15.5  170.5]
+ [ 128.5 3781.5]]
+
+Bayes DAG - ebald
+directed_shd: 302.5
+undirected_shd: 297.25
+directed_edge_f1_score: 0.03920891076326454
+pdag_f1_score: 0.07119581271702326
+pdag_shd: 303.0
+nnz: 134.75
+conf_matrix: [[  11.75  174.25]
+ [ 123.   3787.  ]]
+

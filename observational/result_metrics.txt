@@ -1,0 +1,118 @@
+Gflow #0.8
+directed_shd: 675.8125
+undirected_shd: 651.84375
+directed_edge_f1_score: 0.06100055246607215
+pdag_f1_score: 0.10945811512226188
+pdag_shd: 680.65625
+nnz: 568.15625
+
+Bayes DAG
+directed_shd: 299.91845703125
+undirected_shd: 294.033203125
+directed_edge_f1_score: 0.039673092341829565
+pdag_f1_score: 0.07614627163081616
+pdag_shd: 300.0185546875
+nnz: 132.470703125
+conf_matrix: [[  12.21875     173.78125   ]
+ [ 120.25195312 3789.74804688]]
+
+Gflow #0.6
+directed_shd: 1878.5625
+undirected_shd: 1830.0
+directed_edge_f1_score: 0.12482970027247955
+pdag_f1_score: 0.16893732970027248
+pdag_shd: 1878.5625
+nnz: 2016.0
+conf_matrix: [[ 186.    0.]
+ [1830. 2080.]]
+
+GFlow #0.9
+directed_shd: 1904.6875
+undirected_shd: 1829.34375
+directed_edge_f1_score: 0.10107043682531278
+pdag_f1_score: 0.15454700272479563
+pdag_shd: 1931.5
+nnz: 2016.0
+conf_matrix: [[ 186.65625    0.     ]
+ [1829.34375 2080.     ]]
+
+GFlow #0.75
+directed_shd: 1906.0625
+undirected_shd: 1829.34375
+directed_edge_f1_score: 0.099818354618118
+pdag_f1_score: 0.1681993642143506
+pdag_shd: 1907.65625
+nnz: 2016.0
+conf_matrix: [[ 186.65625    0.     ]
+ [1829.34375 2080.     ]]
+
+GFlow #0.8
+directed_shd: 1879.78125
+undirected_shd: 1829.34375
+directed_edge_f1_score: 0.12368360532260575
+pdag_f1_score: 0.16888056312443234
+pdag_shd: 1880.1875
+nnz: 2016.0
+conf_matrix: [[ 186.65625    0.     ]
+ [1829.34375 2080.     ]]
+
+GFlow #0.5
+directed_shd: 569.34375
+undirected_shd: 550.125
+directed_edge_f1_score: 0.05161941138422767
+pdag_f1_score: 0.10163841046202123
+pdag_shd: 568.78125
+nnz: 440.46875
+conf_matrix: [[  38.5      148.15625]
+ [ 401.96875 3507.375  ]]
+
+GFlow # 5.5
+directed_shd: 1933.375
+undirected_shd: 1829.34375
+directed_edge_f1_score: 0.07502101359210925
+pdag_f1_score: 0.1678871480472298
+pdag_shd: 1935.3125
+nnz: 2016.0
+conf_matrix: [[ 186.65625    0.     ]
+ [1829.34375 2080.     ]]
+
+GFlow #0.525
+directed_shd: 1909.625
+undirected_shd: 1829.34375
+directed_edge_f1_score: 0.09657863787184022
+pdag_f1_score: 0.15974114441416892
+pdag_shd: 1927.71875
+nnz: 2016.0
+conf_matrix: [[ 186.65625    0.     ]
+ [1829.34375 2080.     ]]
+
+GFlow 0.51
+directed_shd: 815.0
+undirected_shd: 785.125
+directed_edge_f1_score: 0.06566323196239505
+pdag_f1_score: 0.11584520908215179
+pdag_shd: 823.78125
+nnz: 729.96875
+conf_matrix: [[  65.75     120.90625]
+ [ 664.21875 3245.125  ]]
+
+GFlow 0.515
+directed_shd: 1914.03125
+undirected_shd: 1829.34375
+directed_edge_f1_score: 0.09258946442995633
+pdag_f1_score: 0.16255108991825612
+pdag_shd: 1926.96875
+nnz: 2016.0
+conf_matrix: [[ 186.65625    0.     ]
+ [1829.34375 2080.     ]]
+
+GFlow 0.5125
+directed_shd: 652.1875
+undirected_shd: 627.8125
+directed_edge_f1_score: 0.05418662154756229
+pdag_f1_score: 0.10766627682089112
+pdag_shd: 651.59375
+nnz: 536.78125
+conf_matrix: [[  47.8125   138.84375]
+ [ 488.96875 3420.375  ]]
+
