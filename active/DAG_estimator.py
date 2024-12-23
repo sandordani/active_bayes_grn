@@ -68,6 +68,7 @@ class BayesDAGEstimator(DAGEstimator):
         self.train_config_dict['batch_size'] = batch_size
         self.train_config_dict['max_epochs'] = max_epochs
         self.bd.run_train(dataset, self.train_config_dict)
+        torch.cuda.empty_cache()
 
     def score(self, X, n_samples=4):
         X_torch = torch.tensor(X, dtype=torch.float32, device=self.bd.device)
@@ -90,15 +91,15 @@ class GFlowDAGEstimator(DAGEstimator):
     def __init__(self, name, vars, results_dir, device, graph_args):
         super().__init__(name)
         self.vars = copy.deepcopy(vars)
-        self.gflownet = DAGGFlowNet(delta=0.51)
+        self.gflownet = DAGGFlowNet(delta=1.35)
         self.optimizer = optax.adam(0.01)
 
         self.prefill = 1000
         self.num_iterations = 10000
-        self.batch_size = 4
+        self.batch_size = 16 #4
         self.replay_capacity = 10000
         self.min_exploration = 0.1
-        self.num_envs = 8
+        self.num_envs = 1
 
         
         key = jax.random.PRNGKey(123)
@@ -137,13 +138,14 @@ class GFlowDAGEstimator(DAGEstimator):
         self.observations = self.env.reset()
 
     def fit(self, X, batch_size=4, max_epochs=500):
-        indices = None
 
         if(self.pretrain):
+            indices = None
             self.pretrain = False
             self.init_env(X)                                  
         else:
             self.prefill = 0
+            indices = self.prev_indices
 
         with trange(self.prefill + max_epochs, desc='Training') as pbar:
             for iteration in pbar:
@@ -160,6 +162,7 @@ class GFlowDAGEstimator(DAGEstimator):
                     dones,
                     prev_indices=indices
                 )
+                self.prev_indices = indices
                 self.observations = next_observations
 
                 if iteration >= self.prefill:

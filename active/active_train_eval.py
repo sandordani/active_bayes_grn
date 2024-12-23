@@ -136,59 +136,59 @@ from active_DAG_learning_framework import active_learning_procedure
 from DAG_estimator import BayesDAGEstimator
 
 # bd_estimator = BayesDAGEstimator('BayesDAGEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('uniform', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=16, T=64)
+# active_learning_procedure('uniform', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=64, T=16)
 # bd_graphs_unif = bd_estimator.sample_models(n_samples=64)
 # eval_graphs(bd_graphs_unif, ground_truth, vars, 'Bayes DAG uniform')
 
 # bd_estimator = BayesDAGEstimator('BayesDAGEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('entropy', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=16, T=64)
+# active_learning_procedure('entropy', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=64, T=16)
 # bd_graphs_ee = bd_estimator.sample_models(n_samples=64)
 # eval_graphs(bd_graphs_ee, ground_truth, vars, 'Bayes DAG entropy')
 
 # bd_estimator = BayesDAGEstimator('BayesDAGEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('eces', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=16, T=64)
+# active_learning_procedure('eces', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=64, T=16)
 # bd_graphs_eces = bd_estimator.sample_models(n_samples=64)
-# eval_graphs(bd_graphs_eces, ground_truth, vars, 'Bayes DAG eces')
+# eval_graphs(bd_graphs_eces, ground_truth, vars, 'Bayes DAG eces')   
 
 # bd_estimator = BayesDAGEstimator('BayesDAGEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('bald', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=16, T=64)
+# active_learning_procedure('bald', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=64, T=16)
 # bd_graphs_bald = bd_estimator.sample_models(n_samples=64)
 # eval_graphs(bd_graphs_bald, ground_truth, vars, 'Bayes DAG bald')
 
-# bd_estimator = BayesDAGEstimator('BayesDAGEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('ebald', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=16, T=64)
-# bd_graphs_ebald = bd_estimator.sample_models(n_samples=64)
-# eval_graphs(bd_graphs_ebald, ground_truth, vars, 'Bayes DAG ebald')
+bd_estimator = BayesDAGEstimator('BayesDAGEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
+active_learning_procedure('ebald', val_data, test_data, ko_dict, train_data, bd_estimator, pretrain_epochs=64, T=16)
+bd_graphs_ebald = bd_estimator.sample_models(n_samples=64)
+eval_graphs(bd_graphs_ebald, ground_truth, vars, 'Bayes DAG ebald')
 
 # # # %%
 
 
-train_data = pd.DataFrame(data=timeseries)
-val_data =  None
-test_data =  train_data
+# train_data = pd.DataFrame(data=timeseries)
+# val_data =  None
+# test_data =  train_data
 
 # gflow_estimator = GFlowDAGEstimator('GFlowEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('uniform', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=64)
+# active_learning_procedure('uniform', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=16)
 # gflow_graphs_unif = gflow_estimator.sample_models(n_samples=64)
 # eval_graphs(gflow_graphs_unif, ground_truth, vars, 'GFlow uniform')
 
 # gflow_estimator = GFlowDAGEstimator('GFlowEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('entropy', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=64)
+# active_learning_procedure('entropy', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=16)
 # gflow_graphs_ee = gflow_estimator.sample_models(n_samples=64)
 # eval_graphs(gflow_graphs_ee, ground_truth, vars, 'GFlow entropy')
 
 # gflow_estimator = GFlowDAGEstimator('GFlowEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('eces', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=64)
+# active_learning_procedure('eces', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=16)
 # gflow_graphs_eces = gflow_estimator.sample_models(n_samples=64)
 # eval_graphs(gflow_graphs_eces, ground_truth, vars, 'GFlow eces')
 
 # gflow_estimator = GFlowDAGEstimator('GFlowEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('bald', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=64)
+# active_learning_procedure('bald', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=16)
 # gflow_graphs_bald = gflow_estimator.sample_models(n_samples=64)
 # eval_graphs(gflow_graphs_bald, ground_truth, vars, 'GFlow bald')
 
 # gflow_estimator = GFlowDAGEstimator('GFlowEstimator', vars, RESULT_DIR, 'cuda:0', graph_args)
-# active_learning_procedure('ebald', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=64)
+# active_learning_procedure('ebald', val_data, test_data, ko_dict, train_data, gflow_estimator, pretrain_epochs=10000, T=16)
 # gflow_graphs_ebald = gflow_estimator.sample_models(n_samples=64)
 # eval_graphs(gflow_graphs_ebald, ground_truth, vars, 'GFlow ebald')
 

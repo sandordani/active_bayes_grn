@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import gc
 from active_DAG_learner import ActiveDAGLearner
 
 from DAG_acquisition_functions import uniform, edge_entropy, equivalence_class_entropy_sampling, bald, equivalence_class_bald_sampling
@@ -38,7 +39,8 @@ def active_learning_procedure(
         n_query: Number of points to query from X_pool,
         training: If False, run test without MC Dropout (default: True)
     """
-
+    print(f'-------------------------------{query_strategy}---------------------------------')
+    n_vars = X_init.shape[1]
 
     learner = ActiveDAGLearner(
         estimator=estimator,
@@ -50,9 +52,25 @@ def active_learning_procedure(
     save_dag_log(estimator.sample_models(n_samples=64), '../dag_logs', f'{estimator.name} - {query_strategy}', 0)
 
     for index in range(T):
-        query_idx = learner.query(n_query=n_query, T=T)
-        new_X, X_pool = np.vstack([perform_ko(X_pool, i) for i in query_idx])
-        with open('../dag_logs', f'{estimator.name} - {query_strategy}/choice_order', "a") as myfile:
-            myfile.write(f"{index}: {query_idx}\n")
+        query_idx = learner.query(n_query=n_vars, T=T)
+        #find the first n_query element from the back of query_idx that is in the pool in
+        #reverse order
+        query_idx = [i for i in query_idx[::-1] if i+1 in X_pool]
+        if len(query_idx) == 0:
+            break
+        elif len(query_idx) > n_query:
+            query_idx = query_idx[:n_query]
+            with open(f'../dag_logs/{estimator.name} - {query_strategy}/choice_order', "a") as myfile:
+                myfile.write(f"{index}: {query_idx}\n")
+
+        new_X = []
+        for i in query_idx:
+            new_X_i, X_pool = perform_ko(X_pool, i)
+            new_X.append(new_X_i)
+        new_X = np.vstack(new_X)
+        print('new_X', new_X.shape)
+
         learner.teach(new_X)
         save_dag_log(estimator.sample_models(n_samples=64), '../dag_logs', f'{estimator.name} - {query_strategy}', index+1)
+        torch.cuda.empty_cache()
+        gc.collect()

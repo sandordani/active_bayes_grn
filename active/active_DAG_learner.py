@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import torch
 from modAL.models import ActiveLearner
 from typing import Callable, Optional, Union, Tuple
 from DAG_estimator import DAGEstimator
@@ -7,6 +8,7 @@ from sklearn.utils.validation import check_array
 from modAL.utils.data import data_vstack, modALinput
 import warnings
 from DAG_acquisition_functions import uniform
+import gc
 
 
 class ActiveDAGLearner(ActiveLearner):
@@ -29,6 +31,8 @@ class ActiveDAGLearner(ActiveLearner):
     def query(self, *query_args, **query_kwargs):
 
         query_result = self.query_strategy(self.estimator.get_vars(), self.estimator.sample_models(), *query_args, **query_kwargs)
+        torch.cuda.empty_cache()
+        gc.collect()
         return query_result
 
     def _add_training_data(self, X: modALinput) -> None:

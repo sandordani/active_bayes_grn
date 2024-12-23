@@ -1,9 +1,17 @@
 import numpy as np
 from utils import create_pdag, edge_list_to_adjacency, H, perform_ko
+import gc
 
 def uniform(vars, dag_samples, n_query: int = 1, T=1):
     query_idx = np.random.choice(range(len(vars)), size=n_query, replace=False)
     return query_idx
+
+def choose_based_on_edge_matrix(cert_matrix, edge_probs):
+    edge_certainty = 1 - cert_matrix
+    node_uncertainty = np.sum(cert_matrix, axis=0) 
+    node_preference = (edge_certainty * edge_probs * node_uncertainty).sum(axis=1)
+
+    return np.argsort(node_preference)
 
 # input is list of var names, list of adjacency materices
 def edge_entropy(vars, dag_samples, n_query: int = 1, T=1):
@@ -15,12 +23,8 @@ def edge_entropy(vars, dag_samples, n_query: int = 1, T=1):
     distribution = np.array([p_directed, p_directed.T, p_no_edge])
     edge_entropies = H(distribution)
 
-    # nodes with the most uncertain edges incoming
-    max_parents = np.argpartition(edge_entropies.sum(axis=0), -n_query)[-n_query:]
-    certain_edges = p_directed > np.median(p_directed, axis=0)
-    most_certain_parents = np.argmin(edge_entropies * certain_edges, axis=0)
-
-    return most_certain_parents[max_parents]
+    return choose_based_on_edge_matrix(edge_entropies, p_directed)[:n_query]
+    
 
 #kérdsé, hogy valségeket, hogyan lehet kezelni majd pdagba alakításkor
 def equivalence_class_entropy_sampling(vars, dag_samples, n_query: int = 1, T=1):
@@ -48,12 +52,7 @@ def equivalence_class_entropy_sampling(vars, dag_samples, n_query: int = 1, T=1)
     entropy[direction_index] = H_direction[direction_index]
     entropy[full_index] = H_full[full_index]
 
-    max_parents = np.argpartition(entropy.sum(axis=0), -n_query)[-n_query:]
-    certain_edges = p_directed > np.median(p_directed, axis=0)
-    most_certain_parents = np.argmin(entropy * certain_edges, axis=0)
-
-    return most_certain_parents[max_parents]
-
+    return choose_based_on_edge_matrix(entropy, p_directed)[:n_query]
 
 
 # input is list of var names, list of adjacency materices only makes sense for probabilistic dag samples
@@ -69,11 +68,9 @@ def bald(vars, dag_samples, n_query: int = 1, T=1):
 
     bald = entropy - E_H
 
-    max_parents = np.argpartition(bald.sum(axis=0), -n_query)[-n_query:]
-    certain_edges = p_directed > np.median(p_directed, axis=0)
-    most_certain_parents = np.argmin(bald * certain_edges, axis=0)
+    gc.collect()
 
-    return most_certain_parents[max_parents]
+    return choose_based_on_edge_matrix(bald, p_directed)[:n_query]
 
 def equivalence_class_bald_sampling(vars, dag_samples, n_query: int = 1, T=1):
     pdags = [create_pdag(d) for d in dag_samples]
@@ -102,8 +99,6 @@ def equivalence_class_bald_sampling(vars, dag_samples, n_query: int = 1, T=1):
     bald[direction_index] = H_direction[direction_index] - E_H_direction[direction_index]
     bald[full_index] = H_full[full_index] - E_H_full[full_index]
 
-    max_parents = np.argpartition(bald.sum(axis=0), -n_query)[-n_query:]
-    certain_edges = p_directed > np.median(p_directed, axis=0)
-    most_certain_parents = np.argmin(bald * certain_edges, axis=0)
+    gc.collect()
 
-    return most_certain_parents[max_parents]
+    return choose_based_on_edge_matrix(bald, p_directed)[:n_query]

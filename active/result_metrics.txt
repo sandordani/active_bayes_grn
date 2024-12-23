@@ -46,3 +46,173 @@ nnz: 134.75
 conf_matrix: [[  11.75  174.25]
  [ 123.   3787.  ]]
 
+Bayes DAG entropy
+directed_shd: 303.140625
+undirected_shd: 297.484375
+directed_edge_f1_score: 0.04341955015411594
+pdag_f1_score: 0.07834610918426733
+pdag_shd: 303.171875
+nnz: 136.796875
+conf_matrix: [[  12.65625   173.34375 ]
+ [ 124.140625 3785.859375]]
+
+Bayes DAG eces
+directed_shd: 308.34375
+undirected_shd: 300.265625
+directed_edge_f1_score: 0.029041435883272192
+pdag_f1_score: 0.07821031205474765
+pdag_shd: 308.40625
+nnz: 139.921875
+conf_matrix: [[  12.828125  173.171875]
+ [ 127.09375  3782.90625 ]]
+
+Bayes DAG ebald
+directed_shd: 312.375
+undirected_shd: 305.875
+directed_edge_f1_score: 0.03882181256429327
+pdag_f1_score: 0.07718881537791072
+pdag_shd: 312.5625
+nnz: 145.75
+conf_matrix: [[  12.9375  173.0625]
+ [ 132.8125 3777.1875]]
+
+Bayes DAG bald
+directed_shd: 305.875
+undirected_shd: 299.140625
+directed_edge_f1_score: 0.03558364582267903
+pdag_f1_score: 0.07662656526418887
+pdag_shd: 305.953125
+nnz: 138.140625
+conf_matrix: [[  12.5       173.5     ]
+ [ 125.640625 3784.359375]]
+
+GFlow eces
+directed_shd: 1908.984375
+undirected_shd: 1830.0
+directed_edge_f1_score: 0.09719856948228883
+pdag_f1_score: 0.1676033151680291
+pdag_shd: 1911.171875
+nnz: 2016.0
+conf_matrix: [[ 186.    0.]
+ [1830. 2080.]]
+
+GFlow uniform
+directed_shd: 279.03125
+undirected_shd: 274.59375
+directed_edge_f1_score: 0.02999740454841393
+pdag_f1_score: 0.05519271494244682
+pdag_shd: 279.046875
+nnz: 108.65625
+conf_matrix: [[  10.03125  175.96875]
+ [  98.625   3811.375  ]]
+
+GFlow entropy
+directed_shd: 189.265625
+undirected_shd: 189.171875
+directed_edge_f1_score: 0.0019403792582146494
+pdag_f1_score: 0.0029189877516875183
+pdag_shd: 189.265625
+nnz: 3.734375
+conf_matrix: [[2.81250000e-01 1.85718750e+02]
+ [3.45312500e+00 3.90654688e+03]]
+
+Bayes DAG uniform
+directed_shd: 305.359375
+undirected_shd: 297.5625
+directed_edge_f1_score: 0.029666981088959557
+pdag_f1_score: 0.07759855865393545
+pdag_shd: 305.421875
+nnz: 136.78125
+conf_matrix: [[  12.609375  173.390625]
+ [ 124.171875 3785.828125]]
+
+Bayes DAG entropy
+directed_shd: 315.3125
+undirected_shd: 311.21875
+directed_edge_f1_score: 0.05116792969162579
+pdag_f1_score: 0.07487665217159939
+pdag_shd: 315.4375
+nnz: 150.65625
+conf_matrix: [[  12.71875  173.28125]
+ [ 137.9375  3772.0625 ]]
+
+Bayes DAG eces
+directed_shd: 298.515625
+undirected_shd: 293.015625
+directed_edge_f1_score: 0.04624661438464519
+pdag_f1_score: 0.07994555921135807
+pdag_shd: 298.734375
+nnz: 132.765625
+conf_matrix: [[  12.875     173.125   ]
+ [ 119.890625 3790.109375]]
+
+GFlow eces
+directed_shd: 209.546875
+undirected_shd: 208.359375
+directed_edge_f1_score: 0.010219686512955177
+pdag_f1_score: 0.019662188590430296
+pdag_shd: 209.59375
+nnz: 27.359375
+conf_matrix: [[2.50000000e+00 1.83500000e+02]
+ [2.48593750e+01 3.88514062e+03]]
+
+GFlow uniform
+directed_shd: 545.765625
+undirected_shd: 526.734375
+directed_edge_f1_score: 0.05213637076031467
+pdag_f1_score: 0.10412331524171445
+pdag_shd: 545.84375
+nnz: 418.109375
+conf_matrix: [[  38.6875    147.3125  ]
+ [ 379.421875 3530.578125]]
+
+GFlow entropy
+directed_shd: 1928.453125
+undirected_shd: 1830.0
+directed_edge_f1_score: 0.07951578110808355
+pdag_f1_score: 0.16328905540417804
+pdag_shd: 1938.09375
+nnz: 2016.0
+conf_matrix: [[ 186.    0.]
+ [1830. 2080.]]
+
+GFlow entropy
+directed_shd: 194.59375
+undirected_shd: 194.171875
+directed_edge_f1_score: 0.0054827397616807145
+pdag_f1_score: 0.009616273454446076
+pdag_shd: 194.59375
+nnz: 10.140625
+conf_matrix: [[9.84375000e-01 1.85015625e+02]
+ [9.15625000e+00 3.90084375e+03]]
+
+GFlow eces
+directed_shd: 220.03125
+undirected_shd: 218.21875
+directed_edge_f1_score: 0.015599015324133873
+pdag_f1_score: 0.029030222948085407
+pdag_shd: 220.078125
+nnz: 39.875
+conf_matrix: [[3.82812500e+00 1.82171875e+02]
+ [3.60468750e+01 3.87395312e+03]]
+
+GFlow bald
+directed_shd: 237.78125
+undirected_shd: 234.96875
+directed_edge_f1_score: 0.020223912442628042
+pdag_f1_score: 0.03942458561164894
+pdag_shd: 237.859375
+nnz: 60.34375
+conf_matrix: [[   5.6875   180.3125 ]
+ [  54.65625 3855.34375]]
+
+GFlow ebald
+directed_shd: 194.21875
+undirected_shd: 193.734375
+directed_edge_f1_score: 0.004381958045685719
+pdag_f1_score: 0.009182077364651039
+pdag_shd: 194.21875
+nnz: 9.578125
+conf_matrix: [[9.21875000e-01 1.85078125e+02]
+ [8.65625000e+00 3.90134375e+03]]
+
